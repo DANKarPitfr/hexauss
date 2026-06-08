@@ -1,0 +1,31 @@
+export interface Property {
+  id: string;
+  title: string;
+  price: string;
+  location: string;
+  image: string;
+  images?: string[];
+  bhk: number | string;
+  area: string;
+  type?: string;
+  furnishing?: string;
+  ownerName?: string;
+  description?: string;
+  amenities?: string[];
+  lat?: number;
+  lng?: number;
+  rating: number;
+  reviewCount: number;
+  phoneNumber?: string;
+  ownerId?: string;
+  createdAt?: any;
+  views?: number;
+  savedBy?: string[];
+  status?: 'pending' | 'live' | 'rejected';
+  visibility?: 'public' | 'private';
+  saleStatus?: 'rented' | 'sold';
+  videoUrl?: string;
+  qrScans?: number;
+  profileVisits?: number;
+  chatRequests?: number;
+}

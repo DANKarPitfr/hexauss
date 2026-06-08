@@ -1,0 +1,78 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+@theme {
+  --color-luxury-bg: var(--theme-luxury-bg);
+  --color-luxury-surface: var(--theme-luxury-surface);
+  --color-luxury-citrus: var(--theme-luxury-citrus);
+  --color-luxury-citrus-light: var(--theme-luxury-citrus-light);
+  --color-luxury-cream: var(--theme-luxury-cream);
+  --color-luxury-text: var(--theme-luxury-text);
+  --color-luxury-border: var(--theme-luxury-border);
+
+  --shadow-glass: var(--theme-shadow-glass);
+  --shadow-glow: var(--theme-shadow-glow);
+  --shadow-glow-sm: var(--theme-shadow-glow-sm);
+  --shadow-neo-dark: var(--theme-shadow-neo-dark);
+  --shadow-neo-dark-sm: var(--theme-shadow-neo-dark-sm);
+  --shadow-neo-dark-inset: var(--theme-shadow-neo-dark-inset);
+}
+
+@layer base {
+  :root {
+    --theme-luxury-bg: #121212;
+    --theme-luxury-surface: #1E1E1E;
+    --theme-luxury-citrus: #FFB627;
+    --theme-luxury-citrus-light: #FFD76A;
+    --theme-luxury-cream: #F6E7B0;
+    --theme-luxury-text: #E8E2D2;
+    --theme-luxury-border: rgba(255, 182, 39, 0.15);
+
+    --theme-shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --theme-shadow-glow: 0 0 15px rgba(255, 182, 39, 0.4);
+    --theme-shadow-glow-sm: 0 0 8px rgba(255, 182, 39, 0.2);
+    --theme-shadow-neo-dark: 8px 8px 16px #0a0a0a, -8px -8px 16px #1a1a1a;
+    --theme-shadow-neo-dark-sm: 4px 4px 8px #0a0a0a, -4px -4px 8px #1a1a1a;
+    --theme-shadow-neo-dark-inset: inset 5px 5px 10px #0a0a0a, inset -5px -5px 10px #1a1a1a;
+  }
+
+  .theme-light {
+    --theme-luxury-bg: #FDF9EC;
+    --theme-luxury-surface: #F6EED9;
+    --theme-luxury-citrus: #E88316;
+    --theme-luxury-citrus-light: #F4A13A;
+    --theme-luxury-cream: #FFFDF8;
+    --theme-luxury-text: #4A3C2A;
+    --theme-luxury-border: rgba(232, 131, 22, 0.15);
+
+    --theme-shadow-glass: 0 8px 32px 0 rgba(232, 131, 22, 0.08);
+    --theme-shadow-glow: 0 0 15px rgba(232, 131, 22, 0.25);
+    --theme-shadow-glow-sm: 0 0 8px rgba(232, 131, 22, 0.15);
+    --theme-shadow-neo-dark: 8px 8px 16px #E3D7BC, -8px -8px 16px #FFFFFF;
+    --theme-shadow-neo-dark-sm: 4px 4px 8px #E3D7BC, -4px -4px 8px #FFFFFF;
+    --theme-shadow-neo-dark-inset: inset 5px 5px 10px #E3D7BC, inset -5px -5px 10px #FFFFFF;
+  }
+
+  .theme-dark {
+    --theme-luxury-bg: #121212;
+    --theme-luxury-surface: #1E1E1E;
+    --theme-luxury-citrus: #FFB627;
+    --theme-luxury-citrus-light: #FFD76A;
+    --theme-luxury-cream: #F6E7B0;
+    --theme-luxury-text: #E8E2D2;
+    --theme-luxury-border: rgba(255, 182, 39, 0.15);
+
+    --theme-shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --theme-shadow-glow: 0 0 15px rgba(255, 182, 39, 0.4);
+    --theme-shadow-glow-sm: 0 0 8px rgba(255, 182, 39, 0.2);
+    --theme-shadow-neo-dark: 8px 8px 16px #0a0a0a, -8px -8px 16px #1a1a1a;
+    --theme-shadow-neo-dark-sm: 4px 4px 8px #0a0a0a, -4px -4px 8px #1a1a1a;
+    --theme-shadow-neo-dark-inset: inset 5px 5px 10px #0a0a0a, inset -5px -5px 10px #1a1a1a;
+  }
+}
+
+body {
+  background-color: var(--color-luxury-bg);
+  color: var(--color-luxury-text);
+  transition: background-color 0.5s ease, color 0.5s ease;
+}

@@ -1,0 +1,8 @@
+{
+  "name": "HexaEstates",
+  "description": "A modern, fast, and user-friendly real estate marketplace.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

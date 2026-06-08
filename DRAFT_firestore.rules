@@ -1,0 +1,37 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Hardened Global Helpers
+    function isSignedIn() { return request.auth != null; }
+    function isValidId(id) { return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); }
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+    
+    // Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Saved Searches
+    match /saved_searches/{searchId} {
+      allow read: if isSignedIn() && existing().userId == request.auth.uid;
+      allow create: if isSignedIn() && isValidId(searchId) && incoming().userId == request.auth.uid && incoming().createdAt == request.time;
+      allow delete: if isSignedIn() && existing().userId == request.auth.uid;
+    }
+    
+    // Conversations
+    match /conversations/{conversationId} {
+      allow get: if isSignedIn() && (request.auth.uid in resource.data.participants);
+      allow list: if isSignedIn() && (request.auth.uid in resource.data.participants);
+      allow create: if isSignedIn() && isValidId(conversationId) && (request.auth.uid in incoming().participants) && incoming().updatedAt == request.time;
+
+      match /messages/{messageId} {
+        allow list: if isSignedIn() && (request.auth.uid in get(/databases/$(database)/documents/conversations/$(conversationId)).data.participants);
+        allow create: if isSignedIn() && isValidId(messageId) && (request.auth.uid == incoming().senderId) && incoming().timestamp == request.time && (request.auth.uid in get(/databases/$(database)/documents/conversations/$(conversationId)).data.participants);
+        allow update: if isSignedIn() && (request.auth.uid != existing().senderId) && incoming().diff(existing()).affectedKeys().hasOnly(['status']) && incoming().status == 'seen';
+      }
+    }
+  }
+}

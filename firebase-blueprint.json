@@ -1,0 +1,55 @@
+{
+  "entities": {
+    "SavedSearch": {
+      "title": "Saved Search",
+      "description": "A user-saved search filter.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "priceMax": { "type": "number" },
+        "bhk": { "type": "string" },
+        "propertyType": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "priceMax", "createdAt"]
+    },
+    "Conversation": {
+      "title": "Conversation",
+      "description": "A chat between a user and a lister.",
+      "type": "object",
+      "properties": {
+        "participants": { "type": "array", "items": { "type": "string" } },
+        "propertyId": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["participants", "propertyId", "updatedAt"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "A single message in a conversation.",
+      "type": "object",
+      "properties": {
+        "conversationId": { "type": "string" },
+        "senderId": { "type": "string" },
+        "text": { "type": "string" },
+        "status": { "type": "string", "enum": ["sent", "delivered", "seen"] },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["conversationId", "senderId", "text", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/saved_searches/{searchId}": {
+      "schema": "SavedSearch",
+      "description": "Storage for user's saved search filters."
+    },
+    "/conversations/{conversationId}": {
+      "schema": "Conversation",
+      "description": "Conversations between users."
+    },
+    "/conversations/{conversationId}/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Messages within a conversation."
+    }
+  }
+}
